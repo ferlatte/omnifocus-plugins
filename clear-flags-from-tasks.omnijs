@@ -1,0 +1,32 @@
+/*{
+  "author": "Mark Ferlatte",
+  "targets": ["omnifocus"],
+  "type": "action",
+  "identifier": "net.cryptio.clear-flags-from-tasks",
+  "version": "0.1",
+  "description": "Clear all flags from uncompleted tasks.",
+  "label": "Clear all flags from uncompleted tasks",
+  "mediumLabel": "Clear all flags from uncompleted tasks",
+  "paletteLabel": "Clear all flags from uncompleted tasks",
+  }*/
+
+/* global PlugIn, flattenedTasks, Task */
+
+(() => {
+  var action = new PlugIn.Action(function() {
+    let tasks = flattenedTasks.filter(task => {
+      return task.taskStatus !== Task.Status.Completed;
+    }).filter(task => {
+      return task.taskStatus !== Task.Status.Dropped;
+    });
+    tasks.forEach(task => {
+      task.flagged = false;
+    });
+  });
+  
+  action.validate = function() {
+    return true;
+  };
+  
+  return action;
+})();
