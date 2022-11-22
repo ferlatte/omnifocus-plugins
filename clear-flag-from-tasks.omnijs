@@ -3,14 +3,16 @@
   "targets": ["omnifocus"],
   "type": "action",
   "identifier": "net.cryptio.clear-flag-from-tasks",
-  "version": "0.1",
-  "description": "Clear flag from uncompleted tasks.",
-  "label": "Clear flag from uncompleted tasks",
-  "mediumLabel": "Clear flag from uncompleted tasks",
-  "paletteLabel": "Clear flag from uncompleted tasks",
+  "version": "0.2",
+  "description": "Clear flag and forecast tag from uncompleted tasks.",
+  "label": "Clear flag and forecast tag from uncompleted tasks",
+  "mediumLabel": "Clear flag and forecast tag from uncompleted tasks",
+  "paletteLabel": "Clear flag and forecast tag from uncompleted tasks",
   }*/
 
-/* global PlugIn, flattenedTasks, Task */
+/* Clear flags AND clear the forecast tag */
+
+/* global PlugIn, flattenedTasks, Tag, Task */
 
 (() => {
   var action = new PlugIn.Action(function() {
@@ -21,6 +23,9 @@
     });
     tasks.forEach(task => {
       task.flagged = false;
+      if (Tag.forecastTag) {
+        task.removeTag(Tag.forecastTag);
+      }
     });
   });
   
