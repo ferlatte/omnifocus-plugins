@@ -28,10 +28,10 @@ function dateForTomorrow() {
         });
     });
 
-    
+
     action.validate = function(selection){
         return (selection.tasks.length > 0);
     };
-        
+
     return action;
 })();

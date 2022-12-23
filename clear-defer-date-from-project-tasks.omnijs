@@ -23,10 +23,10 @@
         });
     });
 
-    
+
     action.validate = function(selection){
         return (selection.projects.length > 0);
     };
-        
+
     return action;
 })();
