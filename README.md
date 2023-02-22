@@ -1,3 +1,5 @@
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/ferlatte/omnifocus-plugins/main.svg)](https://results.pre-commit.ci/latest/github/ferlatte/omnifocus-plugins/main)
+
 # omnifocus-plugins
 Plugins for OmniFocus that I've written for my own use.
 
