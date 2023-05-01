@@ -14,3 +14,7 @@ Defers a task to tomorrow regardless of the current defer date.
 ## clear-flag-from-tasks
 
 Clears the flag from all uncompleted tasks.
+
+## set-estimated-duration-of-tasks-with-magic
+
+Uses OpenAI to estimate the duration of all tasks that don't have an estimated duration already filled in. You will need to provide your own OpenAI API key.

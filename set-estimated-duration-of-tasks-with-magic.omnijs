@@ -1,0 +1,129 @@
+/*{
+    "author": "Mark Ferlatte",
+    "targets": ["omnifocus"],
+    "type": "action",
+    "identifier": "net.cryptio.set-estimated-duration-of-tasks-with-magic",
+    "version": "0.1",
+    "description": "Use OpenAI to estimate the duration of all tasks that don't have an estimated duration already filled in.",
+    "label": "Estimate the duration of all tasks",
+    "mediumLabel": "Estimate the duration of all tasks",
+    "paletteLabel": "Estimate the duration of all tasks",
+    }*/
+
+/* global PlugIn, flattenedTasks, Credentials */
+
+(() => {
+  // Credentials can only be created at plugin load.
+  let credentials = new Credentials();
+  const serviceTitle = "OpenAI";
+  
+  // In OmniFocus, a "root task" is a task object that is associated
+  // with a Project object; they don't appear as tasks in the UI, and
+  // they are really a re-used Task object to store Project data.
+  function isRootTask(task) {
+    return !! task.project;
+  }
+  
+  function findTasksWithoutDuration() {
+    // We only care about tasks that are active (ie, not completed or
+    // dropped) and that are not root tasks.
+    let tasks = flattenedTasks.filter(task => {
+      return !((task.taskStatus === Task.Status.Completed) ||
+               (task.taskStatus === Task.Status.Dropped) ||
+               isRootTask(task));
+    }).filter(task => {
+      return ! task.estimatedMinutes;
+    });
+    return tasks;
+  }
+
+  function getEstimatedDuration(apiKey, name) {
+    const openaiCompletionURL = "https://api.openai.com/v1/chat/completions";
+    const requestBody = {
+      model: "gpt-3.5-turbo",
+      prompt: `${name} will take approximately ___ minutes to complete.`,
+      temperature: 0.7,
+      max_tokens: 1,
+      stop: "\n"
+    };
+    const headers = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${apiKey}`
+    };
+    let request = URL.FetchRequest.fromString(openaiCompletionURL);
+    request.method = "POST";
+    request.headers = headers;
+    request.bodyString = JSON.stringify(requestBody);
+    request.fetch().then(
+      response => console.log(response.bodyString)
+    );
+    return 99;
+  }
+
+  function getAPIKey(creds) {
+    let credentialsObj = creds.read(serviceTitle);
+    if (credentialsObj) {
+      return credentialsObj.password;
+    }
+    return undefined;
+  }
+
+  function requestAPIKey() {
+    let inputForm = new Form();
+    let apiKeyField = new Form.Field.String(
+      "apiKey",
+      "OpenAI API Key",
+      null
+    );
+    inputForm.addField(apiKeyField);
+
+    inputForm.validate = formObject => {
+      apiKey = formObject.values["apiKey"];
+      let apiKeyStatus = (apiKey && apiKey.length > 0);
+      return !! apiKeyStatus;
+    };
+    let formPrompt = `API Key for ${serviceTitle}:`;
+    inputForm.show(formPrompt, "Continue").then(
+      function(formObject) {
+        let apiKey = formObject.values["apiKey"];
+        // NB: The Credentials API requires a username; it will let you
+        // write just a password, but reads will then fail.
+        credentials.write(serviceTitle, "BearerToken", apiKey);
+      }
+    );
+
+  }
+  
+  var action = new PlugIn.Action(function() {
+    // To remove credentials, hold down control when selecting plug-in.
+    if (app.controlKeyDown) {
+      let alert = new Alert("Confirmation Required",
+                            "Remove stored OpenAI API Key?");
+      alert.addOption("Remove");
+      alert.addOption("Cancel");
+      alert.show(buttonIndex => {
+        if (buttonIndex === 0) {
+          credentials.remove(serviceTitle);
+        }
+      });
+    } else {
+      let apiKey = getAPIKey(credentials);
+      if (! apiKey) {
+        requestAPIKey();
+      } else {
+        duration = getEstimatedDuration(apiKey, task.name);
+//        let tasks = findTasksWithoutDuration();
+  //      tasks.forEach(task => {
+        //      duration = getEstimatedDuration(apiKey, task.name);
+      //  });
+      }
+    }
+  });
+
+
+  action.validate = function(selection){
+    return true;
+  };
+
+  return action;
+})();
