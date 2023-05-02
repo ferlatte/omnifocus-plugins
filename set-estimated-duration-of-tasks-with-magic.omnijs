@@ -41,9 +41,17 @@
     const openaiCompletionURL = "https://api.openai.com/v1/chat/completions";
     const requestBody = {
       model: "gpt-3.5-turbo",
-      prompt: `${name} will take approximately ___ minutes to complete.`,
+      messages: [
+        {
+          "role": "system",
+          "content": "You are a helpful assistant who is good at estimating how long a given task will take."
+        },
+        {
+          "role": "user",
+          "content": `${name} will take approximately ___ minutes to complete.`
+        }
+      ],
       temperature: 0.7,
-      max_tokens: 1,
       stop: "\n"
     };
     const headers = {
@@ -111,7 +119,7 @@
       if (! apiKey) {
         requestAPIKey();
       } else {
-        duration = getEstimatedDuration(apiKey, task.name);
+        duration = getEstimatedDuration(apiKey, "Read a chapter of the Art of Gathering and take notes");
 //        let tasks = findTasksWithoutDuration();
   //      tasks.forEach(task => {
         //      duration = getEstimatedDuration(apiKey, task.name);
