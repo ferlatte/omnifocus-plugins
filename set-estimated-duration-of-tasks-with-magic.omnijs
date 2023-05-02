@@ -10,12 +10,16 @@
     "paletteLabel": "Estimate the duration of selected tasks",
     }*/
 
-/* global PlugIn, Credentials, URL, Form, Alert, app */
+/* global PlugIn, Credentials, URL, Form, Alert, app, console */
 
 (() => {
   // Credentials can only be created at plugin load.
   let credentials = new Credentials();
-  const serviceTitle = "OpenAI";
+  const serviceIdentifier = "OpenAI";
+
+  function alertError(e) {
+    return new Alert("Error", e.message);
+  }
 
   function setEstimatedDuration(apiKey, task) {
     const openaiCompletionURL = "https://api.openai.com/v1/chat/completions";
@@ -45,18 +49,26 @@
     let request = URL.FetchRequest.fromString(openaiCompletionURL);
     request.method = "POST";
     request.headers = headers;
-    request.bodyString = JSON.stringify(requestBody);
+    try {
+      request.bodyString = JSON.stringify(requestBody);
+    } catch(e) {
+      console.log("error: ", e);
+      alertError(e).show();
+    }
     request.fetch().then(
       response => {
         let r = JSON.parse(response.bodyString);
         let retval = r.choices[0].message.content;
         task.estimatedMinutes = Number(retval);
       }
-    );
+    ).catch((e) => {
+      console.log("error: ", e);
+      alertError(e).show();
+    });
   }
 
   function getAPIKey(creds) {
-    let credentialsObj = creds.read(serviceTitle);
+    let credentialsObj = creds.read(serviceIdentifier);
     if (credentialsObj) {
       return credentialsObj.password;
     }
@@ -77,19 +89,22 @@
       let apiKeyStatus = (apiKey && apiKey.length > 0);
       return !! apiKeyStatus;
     };
-    let formPrompt = `API Key for ${serviceTitle}:`;
-    inputForm.show(formPrompt, "Continue").then(
-      function(formObject) {
-        let apiKey = formObject.values["apiKey"];
-        // NB: The Credentials API requires a username; it will let you
-        // write just a password, but reads will then fail.
-        credentials.write(serviceTitle, "BearerToken", apiKey);
+    let formPrompt = `API Key for ${serviceIdentifier}:`;
+    inputForm.show(formPrompt, "Continue").then(formObject => {
+      let apiKey = formObject.values["apiKey"];
+      // NB: The Credentials API requires a username; it will let you
+      // write just a password, but reads will then fail.
+      let c = credentials.write(serviceIdentifier, "BearerToken", apiKey);
+      if (! c) {
+        throw new Error("Credentials.write() failed");
       }
-    );
-
+    }).catch((e) => {
+      console.log("error: ", e);
+      alertError(e).show();
+    });
   }
 
-  var action = new PlugIn.Action(function(selection) {
+  var action = new PlugIn.Action(selection => {
     // To remove credentials, hold down control when selecting plug-in.
     if (app.controlKeyDown) {
       let alert = new Alert("Confirmation Required",
@@ -98,7 +113,7 @@
       alert.addOption("Cancel");
       alert.show(buttonIndex => {
         if (buttonIndex === 0) {
-          credentials.remove(serviceTitle);
+          credentials.remove(serviceIdentifier);
         }
       });
     } else {
@@ -113,8 +128,7 @@
     }
   });
 
-
-  action.validate = function(selection){
+  action.validate = selection => {
     return (selection.tasks.length > 0);
   };
 
