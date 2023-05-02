@@ -16,14 +16,14 @@
   // Credentials can only be created at plugin load.
   let credentials = new Credentials();
   const serviceTitle = "OpenAI";
-  
+
   // In OmniFocus, a "root task" is a task object that is associated
   // with a Project object; they don't appear as tasks in the UI, and
   // they are really a re-used Task object to store Project data.
   function isRootTask(task) {
     return !! task.project;
   }
-  
+
   function findTasksWithoutDuration() {
     // We only care about tasks that are active (ie, not completed or
     // dropped) and that are not root tasks.
@@ -101,7 +101,7 @@
     );
 
   }
-  
+
   var action = new PlugIn.Action(function() {
     // To remove credentials, hold down control when selecting plug-in.
     if (app.controlKeyDown) {
