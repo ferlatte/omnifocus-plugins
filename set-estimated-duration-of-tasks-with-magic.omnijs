@@ -10,7 +10,7 @@
     "paletteLabel": "Estimate the duration of all tasks",
     }*/
 
-/* global PlugIn, flattenedTasks, Credentials */
+/* global PlugIn, flattenedTasks, Credentials, Task, URL, console, Form, Alert, app */
 
 (() => {
   // Credentials can only be created at plugin load.
@@ -86,7 +86,7 @@
     inputForm.addField(apiKeyField);
 
     inputForm.validate = formObject => {
-      apiKey = formObject.values["apiKey"];
+      let apiKey = formObject.values["apiKey"];
       let apiKeyStatus = (apiKey && apiKey.length > 0);
       return !! apiKeyStatus;
     };
@@ -119,17 +119,18 @@
       if (! apiKey) {
         requestAPIKey();
       } else {
-        duration = getEstimatedDuration(apiKey, "Read a chapter of the Art of Gathering and take notes");
-//        let tasks = findTasksWithoutDuration();
-  //      tasks.forEach(task => {
-        //      duration = getEstimatedDuration(apiKey, task.name);
-      //  });
+        let duration = getEstimatedDuration(apiKey, "Read a chapter of the Art of Gathering and take notes");
+        console.log(duration);
+        let tasks = findTasksWithoutDuration();
+        tasks.forEach(task => {
+          duration = getEstimatedDuration(apiKey, task.name);
+        });
       }
     }
   });
 
 
-  action.validate = function(selection){
+  action.validate = function(){
     return true;
   };
 

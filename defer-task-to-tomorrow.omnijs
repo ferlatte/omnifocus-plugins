@@ -10,7 +10,7 @@
     "paletteLabel": "Defer a task to tomorrow",
     }*/
 
-/* global Calendar, PlugIn */
+/* global Calendar, DateComponents, PlugIn */
 
 function dateForTomorrow() {
   let calendar = Calendar.current;

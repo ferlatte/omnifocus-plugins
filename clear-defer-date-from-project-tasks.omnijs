@@ -10,7 +10,7 @@
     "paletteLabel": "Clear defer date from project tasks",
     }*/
 
-/* global PlugIn */
+/* global PlugIn, console */
 
 (() => {
     var action = new PlugIn.Action(function(selection) {
