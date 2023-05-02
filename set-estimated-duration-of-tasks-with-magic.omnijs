@@ -57,9 +57,25 @@
     }
     request.fetch().then(
       response => {
-        let r = JSON.parse(response.bodyString);
-        let retval = r.choices[0].message.content;
-        task.estimatedMinutes = Number(retval);
+        if (response.statusCode >= 200 && response.statusCode < 300) {
+          let r = JSON.parse(response.bodyString);
+          let retval = r?.choices[0]?.message?.content;
+          if (retval) {
+            let minutes = Number(retval);
+            if (Number.isInteger(minutes)) {
+              task.estimatedMinutes = Number(retval);
+            } else {
+              throw new Error("Invalid number of minutes returned: ", retval);
+            }
+          } else {
+            throw new Error(response.bodyString);
+          }
+        } else {
+          if (response.mimeType === "application/json") {
+            let errorMessage = JSON.parse(response.bodyString).message;
+            throw new Error(errorMessage);
+          }
+        }
       }
     ).catch((e) => {
       console.log("error: ", e);
