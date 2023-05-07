@@ -9,7 +9,10 @@ pre-commit: .git/hooks/pre-commit
 .git/hooks/pre-commit: $(PRE-COMMIT)
 	pre-commit install
 
-release:
-	zip -r FerlatteTools.omnifocusjs.zip FerlatteTools.omnifocusjs
+clean:
+	rm FerlatteTools.omnifocusjs.zip
 
-.PHONY: release
+release:
+	bin/release
+
+.PHONY: clean release

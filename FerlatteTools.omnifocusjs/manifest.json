@@ -1,6 +1,6 @@
 {
   "author": "Mark Ferlatte <mark@ferlatte.net>",
-  "identifier": "net.ferlatte.omnifocus.FerlatteTools",
+  "identifier": "net.ferlatte.omnifocus.FerlatteTools.development",
   "version": "0.0.2",
   "description": "Provides a variety of useful OmniFocus actions.",
   "defaultLocale": "en",
