@@ -1,17 +1,4 @@
-/*{
-    "author": "Mark Ferlatte",
-    "targets": ["omnifocus"],
-    "type": "action",
-    "identifier": "net.cryptio.set-estimated-duration-of-tasks-with-magic",
-    "version": "0.1",
-    "description": "Use OpenAI to estimate the duration of the selected tasks",
-    "label": "Estimate the duration of selected tasks",
-    "mediumLabel": "Estimate the duration of selected tasks",
-    "paletteLabel": "Estimate the duration of selected tasks",
-    }*/
-
 /* global PlugIn, Credentials, URL, Form, Alert, app, console */
-
 (() => {
   // Credentials can only be created at plugin load.
   let credentials = new Credentials();

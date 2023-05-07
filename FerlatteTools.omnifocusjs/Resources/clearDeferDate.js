@@ -1,17 +1,4 @@
-/*{
-    "author": "Mark Ferlatte",
-    "targets": ["omnifocus"],
-    "type": "action",
-    "identifier": "net.cryptio.clear-defer-date-from-project-tasks",
-    "version": "0.1",
-    "description": "Clears all defer dates from tasks within the selected projects.",
-    "label": "Clear defer date from project tasks",
-    "mediumLabel": "Clear defer date from project tasks",
-    "paletteLabel": "Clear defer date from project tasks",
-    }*/
-
 /* global PlugIn, console */
-
 (() => {
     var action = new PlugIn.Action(function(selection) {
         // Add code to run when the action is invoked

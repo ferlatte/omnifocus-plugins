@@ -1,17 +1,4 @@
-/*{
-    "author": "Mark Ferlatte",
-    "targets": ["omnifocus"],
-    "type": "action",
-    "identifier": "net.cryptio.defer-task-to-tomorrow",
-    "version": "0.1",
-    "description": "Defers a task to tomorrow regardless of the current defer date.",
-    "label": "Defer a task to tomorrow",
-    "mediumLabel": "Defer a task to tomorrow",
-    "paletteLabel": "Defer a task to tomorrow",
-    }*/
-
 /* global Calendar, DateComponents, PlugIn */
-
 function dateForTomorrow() {
   let calendar = Calendar.current;
   let oneDay = new DateComponents();

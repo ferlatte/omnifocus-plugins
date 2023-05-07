@@ -1,19 +1,4 @@
-/*{
-  "author": "Mark Ferlatte",
-  "targets": ["omnifocus"],
-  "type": "action",
-  "identifier": "net.cryptio.clear-flag-from-tasks",
-  "version": "0.2",
-  "description": "Clear flag and forecast tag from uncompleted tasks.",
-  "label": "Clear flag and forecast tag from uncompleted tasks",
-  "mediumLabel": "Clear flag and forecast tag from uncompleted tasks",
-  "paletteLabel": "Clear flag and forecast tag from uncompleted tasks",
-  }*/
-
-/* Clear flags AND clear the forecast tag */
-
 /* global PlugIn, flattenedTasks, Tag, Task */
-
 (() => {
   var action = new PlugIn.Action(function() {
     let tasks = flattenedTasks.filter(task => {
