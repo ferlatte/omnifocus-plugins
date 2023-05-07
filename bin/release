@@ -3,11 +3,11 @@
 releasedir=$(mktemp -d)
 echo "${releasedir}"
 cp -R FerlatteTools.omnifocusjs "${releasedir}"
-# This hack sets the release identifier back to production from
-# development.
-sed -i s/net.ferlatte.omnifocus.FerlatteTools.development/net.ferlatte.omnifocus.FerlatteTools/ "${releasedir}/FerlatteTools.omnifocusjs/manifest.json"
 (
     cd "${releasedir}" || exit 1
+    # This hack sets the release identifier back to production from
+    # development.
+    sed -i '' 's/net.ferlatte.omnifocus.FerlatteTools.development/net.ferlatte.omnifocus.FerlatteTools/' "FerlatteTools.omnifocusjs/manifest.json"
     zip -r FerlatteTools.omnifocusjs.zip FerlatteTools.omnifocusjs
 )
 cp "${releasedir}/FerlatteTools.omnifocusjs.zip" .
