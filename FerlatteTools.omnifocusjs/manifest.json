@@ -17,16 +17,20 @@
     "image": "info.circle"
   },
     {
-    "identifier": "clearDeferDate"
+    "identifier": "clearDeferDate",
+    "image": "calendar.badge.minus"
   },
     {
-    "identifier": "clearFlag"
+    "identifier": "clearFlag",
+    "image": "flag.slash"
   },
     {
-    "identifier": "deferUntilTomorrow"
+    "identifier": "deferUntilTomorrow",
+    "image": "calendar.badge.plus"
   },
     {
-    "identifier": "estimateWithMagic"
+    "identifier": "estimateWithMagic",
+    "image": "person.badge.clock"
   }
   ]
 }
