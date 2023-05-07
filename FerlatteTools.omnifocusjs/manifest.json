@@ -1,0 +1,22 @@
+{
+  "author": "Mark Ferlatte <mark@ferlatte.net>",
+  "identifier": "net.ferlatte.omnifocus.FerlatteTools",
+  "version": "0.0.1",
+  "description": "Provides a variety of useful OmniFocus actions.",
+  "defaultLocale": "en",
+  "actions":
+  [
+    {
+    "identifier": "clearDeferDate"
+  },
+    {
+    "identifier": "clearFlag"
+  },
+    {
+    "identifier": "deferUntilTomorrow"
+  },
+    {
+    "identifier": "estimateWithMagic"
+  }
+  ]
+}
