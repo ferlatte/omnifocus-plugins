@@ -8,3 +8,8 @@ pre-commit: .git/hooks/pre-commit
 # Update the pre-commit hooks if the pre-commit binary is updated.
 .git/hooks/pre-commit: $(PRE-COMMIT)
 	pre-commit install
+
+release:
+	zip -r FerlatteTools.omnifocusjs.zip FerlatteTools.omnifocusjs
+
+.PHONY: release
