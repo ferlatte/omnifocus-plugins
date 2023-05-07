@@ -13,6 +13,10 @@
   "actions":
   [
     {
+    "identifier": "aboutThisPlugin",
+    "image": "info.circle"
+  },
+    {
     "identifier": "clearDeferDate"
   },
     {
