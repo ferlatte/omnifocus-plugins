@@ -1,1 +1,5 @@
-label = "Clear defer date from project tasks";
+"label" = "Clear defer date from project tasks";
+"shortLabel" = "Clear defer date";
+"mediumLabel" = "Clear defer date";
+"longLabel" = "Clear defer date from all project tasks";
+"paletteLabel" = "Clear defer date";

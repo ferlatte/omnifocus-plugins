@@ -1,1 +1,5 @@
-label = "Estimate the duration of selected tasks";
+label = "Estimate duration of selected tasks";
+"shortLabel" = "Estimate";
+"mediumLabel" = "Estimate duration";
+"longLabel" = "Estimate duration of selected tasks using OpenAI";
+"paletteLabel" = "Estimate";

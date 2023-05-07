@@ -1,1 +1,5 @@
-label = "About this plugin...";
+"label" = "About this plugin...";
+"shortLabel" = "About...";
+"mediumLabel" = "About plugin";
+"longLabel" = "Information about this plugin";
+"paletteLabel" = "About...";
