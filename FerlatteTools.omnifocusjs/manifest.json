@@ -17,6 +17,10 @@
     "image": "info.circle"
   },
     {
+    "identifier": "checkForUpdate",
+    "image": "arrow.down.circle"
+  },
+    {
     "identifier": "clearDeferDate",
     "image": "calendar.badge.minus"
   },
