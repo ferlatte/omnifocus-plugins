@@ -1,24 +1,16 @@
-/* global Calendar, DateComponents, PlugIn */
-function dateForTomorrow() {
-  let calendar = Calendar.current;
-  let oneDay = new DateComponents();
-  oneDay.day = 1;
-  let now = new Date();
-  let today = calendar.startOfDay(now);
-  return calendar.dateByAddingDateComponents(today, oneDay);
-}
+/* global PlugIn */
 
 (() => {
-    var action = new PlugIn.Action(function(selection) {
-        selection.tasks.forEach(function(task) {
-          task.deferDate = dateForTomorrow();
-        });
+  var action = new PlugIn.Action(function(selection) {
+    let FerlatteLib = this.FerlatteLib;
+    selection.tasks.forEach(function(task) {
+      task.deferDate = FerlatteLib.dateForTomorrow();
     });
+  });
 
+  action.validate = function(selection){
+    return (selection.tasks.length > 0);
+  };
 
-    action.validate = function(selection){
-        return (selection.tasks.length > 0);
-    };
-
-    return action;
+  return action;
 })();

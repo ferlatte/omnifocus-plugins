@@ -7,13 +7,9 @@ Plugins for OmniFocus that I've written for my own use.
 
 A bundle that contains all of the following plugins.
 
-### clear-defer-date-from-project-tasks
+### Defer tasks until tomorrow
 
-Clears out defer dates from all tasks within the selected projects.
-
-### defer-task-to-tomorrow
-
-Defers a task to tomorrow regardless of the current defer date.
+Defers the selected tasks until tomorrow regardless of the current defer date.
 
 ### Clear flag and forecast tag from blocked tasks
 

@@ -21,10 +21,6 @@
     "image": "arrow.down.circle"
   },
     {
-    "identifier": "clearDeferDate",
-    "image": "calendar.badge.minus"
-  },
-    {
     "identifier": "clearFlag",
     "image": "flag.slash"
   },

@@ -1,5 +1,5 @@
-label = "Defer a task to tomorrow";
-"shortLabel" = "Defer a day";
+label = "Defer tasks until tomorrow";
+"shortLabel" = "Defer";
 "mediumLabel" = "Defer until tomorrow";
-"longLabel" = "Defer task until tomorrow";
-"paletteLabel" = "Defer a day";
+"longLabel" = "Defer tasks until tomorrow";
+"paletteLabel" = "Defer";

@@ -1,4 +1,4 @@
-/* global Alert, PlugIn, URL, Version */
+/* global Alert, Calendar, DateComponents, PlugIn, URL, Version */
 (() => {
   let FerlatteLib = new PlugIn.Library(new Version("0.1"));
 
@@ -26,5 +26,15 @@
     let alert = new Alert("Update status", alertMessage);
     return alert.show();
   };
+
+  FerlatteLib.dateForTomorrow = function() {
+    let calendar = Calendar.current;
+    let oneDay = new DateComponents();
+    oneDay.day = 1;
+    let now = new Date();
+    let today = calendar.startOfDay(now);
+    return calendar.dateByAddingDateComponents(today, oneDay);
+  };
+
   return FerlatteLib;
 })();
