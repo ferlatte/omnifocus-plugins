@@ -11,7 +11,7 @@ ${this.plugIn.description}
 `;
     let alert = new Alert(alertTitle, alertMessage);
     alert.addOption("OK");
-    alert.show();
+    return alert.show();
   });
 
   return action;

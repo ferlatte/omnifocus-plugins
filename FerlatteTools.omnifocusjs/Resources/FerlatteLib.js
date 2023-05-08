@@ -1,8 +1,8 @@
 /* global Alert, Calendar, DateComponents, PlugIn, URL, Version */
 (() => {
-  let FerlatteLib = new PlugIn.Library(new Version("0.1"));
+  const lib = new PlugIn.Library(new Version("0.1"));
 
-  FerlatteLib.checkForUpdate = async function(version) {
+  lib.checkForUpdate = async function(version) {
     const githubReleaseURL = "https://api.github.com/repos/ferlatte/omnifocus-plugins/releases/latest";
     const headers = {
       "Accept": "application/vnd.github+json",
@@ -27,7 +27,7 @@
     return alert.show();
   };
 
-  FerlatteLib.dateForTomorrow = function() {
+  lib.dateForTomorrow = function() {
     let calendar = Calendar.current;
     let oneDay = new DateComponents();
     oneDay.day = 1;
@@ -36,5 +36,15 @@
     return calendar.dateByAddingDateComponents(today, oneDay);
   };
 
-  return FerlatteLib;
+  lib.openAIServiceIdentifier = "OpenAI";
+
+  lib.openAIAPIKey = function(credentials) {
+    let credsObj = credentials.read(lib.openAIServiceIdentifier);
+    if (credsObj) {
+      return credsObj.password;
+    }
+    return undefined;
+  };
+
+  return lib;
 })();

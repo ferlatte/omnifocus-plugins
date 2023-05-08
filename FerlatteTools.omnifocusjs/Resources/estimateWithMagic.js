@@ -70,14 +70,6 @@
     });
   }
 
-  function getAPIKey(creds) {
-    let credentialsObj = creds.read(serviceIdentifier);
-    if (credentialsObj) {
-      return credentialsObj.password;
-    }
-    return undefined;
-  }
-
   function requestAPIKey() {
     let inputForm = new Form();
     let apiKeyField = new Form.Field.String(
@@ -107,7 +99,9 @@
     });
   }
 
-  var action = new PlugIn.Action(selection => {
+  var action = new PlugIn.Action(function(selection) {
+    const FerlatteLib = this.FerlatteLib;
+
     // To remove credentials, hold down control when selecting plug-in.
     if (app.controlKeyDown) {
       let alert = new Alert("Confirmation Required",
@@ -120,7 +114,7 @@
         }
       });
     } else {
-      let apiKey = getAPIKey(credentials);
+      let apiKey = FerlatteLib.openAIAPIKey(credentials);
       if (! apiKey) {
         requestAPIKey();
       } else {

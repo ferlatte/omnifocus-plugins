@@ -2,7 +2,7 @@
 
 (() => {
   var action = new PlugIn.Action(function(selection) {
-    let FerlatteLib = this.FerlatteLib;
+    const FerlatteLib = this.FerlatteLib;
     selection.tasks.forEach(function(task) {
       task.deferDate = FerlatteLib.dateForTomorrow();
     });
