@@ -1,5 +1,5 @@
-"label" = "Clear flag and forecast tag from uncompleted tasks";
+"label" = "Clear flag and forecast tag from blocked tasks";
 "shortLabel" = "Clear flags";
-"mediumLabel" = "Clear flags from uncompleted";
-"longLabel" = "Clear flag and forecast tag from uncompleted tasks";
+"mediumLabel" = "Clear flags from blocked";
+"longLabel" = "Clear flag and forecast tag from blocked tasks";
 "paletteLabel" = "Clear flags";

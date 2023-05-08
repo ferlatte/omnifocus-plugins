@@ -15,9 +15,9 @@ Clears out defer dates from all tasks within the selected projects.
 
 Defers a task to tomorrow regardless of the current defer date.
 
-### clear-flag-from-tasks
+### Clear flag and forecast tag from blocked tasks
 
-Clears the flag from all uncompleted tasks.
+I mostly use this for repeating tasks. If you flag a task and then complete it (or put it in the Forecast view) the next iteration of the task will also be flagged or tagged for Forecast. I use this to "clear out" those future tasks.
 
 ### set-estimated-duration-of-tasks-with-magic
 
