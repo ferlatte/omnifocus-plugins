@@ -23,8 +23,8 @@ Uses OpenAI to estimate the duration of all tasks that don't have an estimated d
 
 (This is all ripe for automating)
 
-Tag main with the version in manifest.json: `git tag -a v0.0.1 -m "Version 0.0.1"`
+Tag main with the version in manifest.json: `make releasetag`
 Push tag: `git push origin --tags`
 `make release`, which should give you FerlatteTools.omnifocusjs.zip
-Go to Github, create a new release against the tag you just pushed, and upload the zip file.
+Go to Github, create a new release against the tag you just pushed named like `0.0.1`, and upload the zip file.
 Then, bump the version number in manifest.json and commit that as your first commit after the release.
