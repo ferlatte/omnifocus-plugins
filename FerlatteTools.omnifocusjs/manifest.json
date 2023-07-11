@@ -31,6 +31,10 @@
     {
     "identifier": "estimateWithMagic",
     "image": "person.badge.clock"
+  },
+    {
+    "identifier": "resetEveningChecklist",
+    "image": "moon.stars"
   }
   ]
 }
