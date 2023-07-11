@@ -36,6 +36,16 @@
     return calendar.dateByAddingDateComponents(today, oneDay);
   };
 
+  lib.dateOccursToday = function(dateToCheck) {
+    let cal = Calendar.current;
+    let now = new Date();
+    let midnightToday = cal.startOfDay(now);
+    let dc = cal.dateComponentsFromDate(midnightToday);
+    dc.day = dc.day + 1;
+    let midnightTomorrow = cal.dateFromDateComponents(dc);
+    return (dateToCheck >= midnightToday) && (dateToCheck < midnightTomorrow);
+  };
+
   lib.openAIServiceIdentifier = "OpenAI";
 
   lib.openAIAPIKey = function(credentials) {
