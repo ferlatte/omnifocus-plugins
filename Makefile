@@ -15,4 +15,7 @@ clean:
 release:
 	bin/release
 
-.PHONY: clean release
+releasetag:
+	bin/releasetag
+
+.PHONY: clean release releasetag
