@@ -1,7 +1,7 @@
 /* global PlugIn, Calendar, console, flattenedProjects, */
 (() => {
   var action = new PlugIn.Action(function() {
-    const eveningRitualName = "Evening Ritual Test";
+    const eveningRitualName = "Evening Ritual";
     let eveningRituals = flattenedProjects.filter(project => {
       return (project.name === eveningRitualName) &&
         (project.completed === false);
