@@ -7,10 +7,6 @@ repos:
     - id: check-json
     - id: check-yaml
     - id: check-added-large-files
-- repo: https://github.com/pre-commit/mirrors-eslint
-  rev: v9.17.0
-  hooks:
-    - id: eslint
 - repo: https://github.com/shellcheck-py/shellcheck-py
   rev: v0.10.0.1
   hooks:
