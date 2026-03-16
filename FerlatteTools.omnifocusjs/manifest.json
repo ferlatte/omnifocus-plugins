@@ -4,37 +4,39 @@
   "version": "0.0.5",
   "description": "Provides a variety of useful OmniFocus actions.",
   "defaultLocale": "en",
-  "libraries":
-  [
+  "libraries": [
     {
-    "identifier": "FerlatteLib"
-  }
+      "identifier": "FerlatteLib"
+    }
   ],
-  "actions":
-  [
+  "actions": [
     {
-    "identifier": "aboutThisPlugin",
-    "image": "info.circle"
-  },
+      "identifier": "aboutThisPlugin",
+      "image": "info.circle"
+    },
     {
-    "identifier": "checkForUpdate",
-    "image": "arrow.down.circle"
-  },
+      "identifier": "checkForUpdate",
+      "image": "arrow.down.circle"
+    },
     {
-    "identifier": "clearFlag",
-    "image": "flag.slash"
-  },
+      "identifier": "clearFlag",
+      "image": "flag.slash"
+    },
     {
-    "identifier": "deferUntilTomorrow",
-    "image": "calendar.badge.plus"
-  },
+      "identifier": "clearPlannedDate",
+      "image": "calendar.badge.minus"
+    },
     {
-    "identifier": "estimateWithMagic",
-    "image": "person.badge.clock"
-  },
+      "identifier": "deferUntilTomorrow",
+      "image": "calendar.badge.plus"
+    },
     {
-    "identifier": "resetEveningChecklist",
-    "image": "moon.stars"
-  }
+      "identifier": "estimateWithMagic",
+      "image": "person.badge.clock"
+    },
+    {
+      "identifier": "resetEveningChecklist",
+      "image": "moon.stars"
+    }
   ]
 }
